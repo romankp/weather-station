@@ -4,7 +4,8 @@
   "description": "consolidated weather & tidal information for Swampscott",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel --no-cache src/index.html",
+    "build": "parcel build src/index.html --out-dir dist/"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/romankp/weather-station/issues"
   },
-  "homepage": "https://github.com/romankp/weather-station#readme"
+  "homepage": "https://github.com/romankp/weather-station#readme",
+  "browserslist": "last 1 Chrome version, last 1 Firefox version",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@vue/babel-preset-app": "^4.5.13",
+    "parcel": "2.0.0-rc.0",
+    "vue": "^2.6.14"
+  }
 }
