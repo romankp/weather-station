@@ -27,6 +27,8 @@
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@parcel/transformer-less": "^2.0.0-rc.0",
+    "less": "^4.1.2",
     "parcel": "2.0.0-rc.0"
   }
 }

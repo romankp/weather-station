@@ -1,10 +1,5 @@
 const template = document.createElement('template');
 template.innerHTML = `
-  <style>
-    * {
-      color: magenta;
-    }
-  </style>
   <h1>Hey, what's up?</h1>
 `;
 
