@@ -1,15 +1,5 @@
-const template = document.createElement('template');
-template.innerHTML = `
-  <h1></h1>
-`;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './components/Root';
 
-class AppRoot extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.querySelector('h1').innerText = this.getAttribute('text');
-  }
-}
-
-window.customElements.define('app-root', AppRoot);
+ReactDOM.render(<Root />, document.getElementById('root'));
