@@ -2,10 +2,9 @@
   "name": "weather-station",
   "version": "1.0.0",
   "description": "consolidated weather & tidal information for Swampscott",
-  "main": "index.js",
   "scripts": {
     "start": "parcel --no-cache src/index.html",
-    "build": "parcel build src/index.html --out-dir dist/"
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
@@ -17,7 +16,7 @@
     "react",
     "parcel"
   ],
-  "author": "Roman",
+  "author": "RomanKP",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/romankp/weather-station/issues"
@@ -25,16 +24,16 @@
   "homepage": "https://github.com/romankp/weather-station#readme",
   "browserslist": "last 1 Chrome version, last 1 Firefox version",
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
-    "@parcel/transformer-less": "^2.0.0-rc.0",
-    "less": "^4.1.2",
+    "@babel/core": "7.15",
+    "@babel/preset-env": "7.15",
+    "@babel/preset-react": "7.14",
+    "@parcel/transformer-less": "2.0.0-rc.0",
+    "less": "4.1",
     "parcel": "2.0.0-rc.0"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "prop-types": "15.7",
+    "react": "17.0",
+    "react-dom": "17.0"
   }
 }
