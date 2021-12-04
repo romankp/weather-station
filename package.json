@@ -24,12 +24,12 @@
   "homepage": "https://github.com/romankp/weather-station#readme",
   "browserslist": "last 1 Chrome version, last 1 Firefox version",
   "devDependencies": {
-    "@babel/core": "7.15",
-    "@babel/preset-env": "7.15",
-    "@babel/preset-react": "7.14",
-    "@parcel/transformer-less": "2.0.0-rc.0",
+    "@babel/core": "7.16",
+    "@babel/preset-env": "7.16",
+    "@babel/preset-react": "7.16",
+    "@parcel/transformer-less": "2.0.1",
     "less": "4.1",
-    "parcel": "2.0.0-rc.0"
+    "parcel": "2.0.1"
   },
   "dependencies": {
     "prop-types": "15.7",
