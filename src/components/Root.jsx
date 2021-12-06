@@ -5,6 +5,10 @@ import {
   buildFullURL,
 } from '../utils/componentUtils.js';
 
+// We don't destructure here because of a limitation in how Parcel interacts with .env variables
+const baseUrl = process.env.BASE_URL;
+const stationId = process.env.STATION_ID;
+
 class Root extends Component {
   constructor() {
     super();
