@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  getCurrentDateString,
+  constructQueryDate,
+  buildFullURL,
+} from '../utils/componentUtils.js';
 
 class Root extends Component {
   constructor() {
