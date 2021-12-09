@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { buildFullURL } from '../utils/componentUtils.js';
 import {
   getCurrentDateString,
   constructQueryDate,
-  buildFullURL,
-} from '../utils/componentUtils.js';
+  localizeTime,
+} from '../utils/dateUtils.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const baseUrl = process.env.BASE_URL;
@@ -72,6 +73,18 @@ const returnNextEvent = predictions => {
   );
 };
 
+const hilo = {
+  H: 'high',
+  L: 'low',
+};
+
+const checkNext = (thisType, thisTime, nextEvent) => {
+  if (thisType === nextEvent.type && thisTime === nextEvent.t) {
+    return true;
+  }
+  return false;
+};
+
 class Root extends Component {
   constructor(props) {
     super(props);
@@ -122,7 +135,34 @@ class Root extends Component {
   }
 
   render() {
-    return <h1>Let's try this again!</h1>;
+    const {
+      loaded,
+      currentDateString,
+      predictionsToday,
+      nextEvent,
+      futureLoaded,
+      pickedDate,
+      predictionsFuture,
+    } = this.state;
+    const nextTime = nextEvent.t;
+    return (
+      <div className={`wrapper${loaded ? ' show' : ''}`}>
+        <h1>Weather Station</h1>
+        <p>{currentDateString}</p>
+        <ol>
+          {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+            ({ type, t }) => {
+              const isNext = checkNext(type, t, nextEvent);
+              return (
+                <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+                  {hilo[type]} {localizeTime(t)}
+                </li>
+              );
+            }
+          )}
+        </ol>
+      </div>
+    );
   }
 }
 
