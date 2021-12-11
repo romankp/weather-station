@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { buildFullURL } from '../utils/componentUtils.js';
+import { buildFullURL, buildFullForecastURL } from '../utils/componentUtils.js';
 import {
   getCurrentDateString,
   constructQueryDate,
@@ -9,6 +9,7 @@ import {
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const baseUrl = process.env.BASE_URL;
 const stationId = process.env.STATION_ID;
+const gridString = process.env.FORECAST_GRID;
 
 const currentTime = new Date();
 const tidalCutoff = new Date().setHours(18, 47, 30);
@@ -16,6 +17,7 @@ const isAfterCutoff = currentTime >= tidalCutoff;
 const startDate = constructQueryDate(currentTime, false);
 const endDate = constructQueryDate(currentTime, isAfterCutoff);
 const urlFull = buildFullURL(baseUrl, stationId, startDate, endDate);
+const forecastURL = buildFullForecastURL(gridString);
 
 const fetchTideData = async url => {
   console.log('Fetching tide data.');
@@ -161,6 +163,7 @@ class Root extends Component {
             }
           )}
         </ol>
+        <p>{forecastURL}</p>
       </div>
     );
   }
