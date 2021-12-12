@@ -19,13 +19,13 @@ const endDate = constructQueryDate(currentTime, isAfterCutoff);
 const urlFull = buildFullURL(baseUrl, stationId, startDate, endDate);
 const forecastURL = buildFullForecastURL(gridString);
 
-const fetchTideData = async url => {
-  console.log('Fetching tide data.');
+const fetchData = async (url, type) => {
+  console.log(`Fetching ${type} data.`);
   try {
     const response = await fetch(url);
     return await response.json();
   } catch (e) {
-    console.error(`Fetch request for tide data failed: ${e}`);
+    console.error(`Fetch request for ${type} data failed: ${e}`);
   }
 };
 
@@ -105,22 +105,21 @@ class Root extends Component {
   }
 
   componentDidMount() {
-    fetchTideData(urlFull).then(({ predictions }) => {
+    fetchData(urlFull, 'tide').then(({ predictions }) => {
       console.log('Tide data received.');
       this.setState({
         predictionsToday: predictions,
         nextEvent: returnNextEvent(predictions),
-        loaded: true,
       });
-      console.log('State updated.');
+      console.log('Tide state updated.');
     });
-
-    fetchTideData(forecastURL).then(({ properties }) => {
+    fetchData(forecastURL, 'weather forcast').then(({ properties }) => {
       console.log('Weather data received.');
       this.setState({
         weather: properties.periods[0],
+        loaded: true,
       });
-      console.log('State updated.');
+      console.log('Weather state updated.');
     });
   }
 
@@ -128,7 +127,7 @@ class Root extends Component {
     const queryDate = constructQueryDate(pickedDate, false);
     const updatedURL = buildFullURL(baseUrl, stationId, queryDate, queryDate);
     console.log('Date updated.');
-    fetchTideData(updatedURL).then(({ predictions }) => {
+    fetchData(updatedURL, 'tide').then(({ predictions }) => {
       console.log(`Updated date's tide data received.`);
       this.setState({
         predictionsFuture: predictions,
