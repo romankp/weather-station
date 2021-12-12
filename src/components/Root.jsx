@@ -100,6 +100,7 @@ class Root extends Component {
       pickedDate: '',
       futureLoaded: false,
       predictionsFuture: [],
+      weather: {},
     };
   }
 
@@ -110,6 +111,14 @@ class Root extends Component {
         predictionsToday: predictions,
         nextEvent: returnNextEvent(predictions),
         loaded: true,
+      });
+      console.log('State updated.');
+    });
+
+    fetchTideData(forecastURL).then(({ properties }) => {
+      console.log('Weather data received.');
+      this.setState({
+        weather: properties.periods[0],
       });
       console.log('State updated.');
     });
@@ -145,8 +154,10 @@ class Root extends Component {
       futureLoaded,
       pickedDate,
       predictionsFuture,
+      weather,
     } = this.state;
     const nextTime = nextEvent.t;
+    const { detailedForecast } = weather;
     return (
       <div className={`wrapper${loaded ? ' show' : ''}`}>
         <h1>Weather Station</h1>
@@ -163,7 +174,7 @@ class Root extends Component {
             }
           )}
         </ol>
-        <p>{forecastURL}</p>
+        <p>{detailedForecast}</p>
       </div>
     );
   }
