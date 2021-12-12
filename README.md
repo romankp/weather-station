@@ -16,8 +16,5 @@ Parcel caches these values, so changing them while it's running will not immedia
 
 ## TODO
 
-- ~~Settle on a component solution.~~
-- Bring logic over from the tides project.
-- Find weather API for this project.
 - Integrate weather.
 - Expand visuals, style, and animations/transitions.
