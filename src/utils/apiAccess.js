@@ -6,4 +6,14 @@ const buildFullForecastURL = gridString => {
   return `https://api.weather.gov/gridpoints/BOX/${gridString}/forecast`;
 };
 
-export { buildFullURL, buildFullForecastURL };
+const fetchData = async (url, type) => {
+  console.log(`Fetching ${type} data.`);
+  try {
+    const response = await fetch(url);
+    return await response.json();
+  } catch (e) {
+    console.error(`Fetch request for ${type} data failed: ${e}`);
+  }
+};
+
+export { buildFullURL, buildFullForecastURL, fetchData };

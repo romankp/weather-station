@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { buildFullURL, buildFullForecastURL } from '../utils/componentUtils.js';
+import {
+  buildFullURL,
+  buildFullForecastURL,
+  fetchData,
+} from '../utils/apiAccess.js';
 import {
   getCurrentDateString,
   constructQueryDate,
@@ -18,16 +22,6 @@ const startDate = constructQueryDate(currentTime, false);
 const endDate = constructQueryDate(currentTime, isAfterCutoff);
 const urlFull = buildFullURL(baseUrl, stationId, startDate, endDate);
 const forecastURL = buildFullForecastURL(gridString);
-
-const fetchData = async (url, type) => {
-  console.log(`Fetching ${type} data.`);
-  try {
-    const response = await fetch(url);
-    return await response.json();
-  } catch (e) {
-    console.error(`Fetch request for ${type} data failed: ${e}`);
-  }
-};
 
 // If it's after the tidal cutoff time,
 // return an array of prediction items for todays date
