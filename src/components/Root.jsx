@@ -150,7 +150,7 @@ class Root extends Component {
       weather,
     } = this.state;
     const nextTime = nextEvent.t;
-    const { detailedForecast } = weather;
+    const { detailedForecast, temperature, windSpeed, windDirection } = weather;
     return (
       <div className={`wrapper${loaded ? ' show' : ''}`}>
         <h1>Weather Station</h1>
@@ -167,6 +167,10 @@ class Root extends Component {
             }
           )}
         </ol>
+        <p>{temperature}&deg;F</p>
+        <p>
+          {windSpeed}, {windDirection}
+        </p>
         <p>{detailedForecast}</p>
       </div>
     );
