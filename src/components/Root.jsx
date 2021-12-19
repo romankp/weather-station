@@ -132,23 +132,9 @@ class Root extends Component {
     });
   }
 
-  showDatePicker() {
-    this.setState({
-      futureLoaded: false,
-    });
-  }
-
   render() {
-    const {
-      loaded,
-      currentDateString,
-      predictionsToday,
-      nextEvent,
-      futureLoaded,
-      pickedDate,
-      predictionsFuture,
-      weather,
-    } = this.state;
+    const { loaded, currentDateString, predictionsToday, nextEvent, weather } =
+      this.state;
     const nextTime = nextEvent.t;
     const {
       detailedForecast,
