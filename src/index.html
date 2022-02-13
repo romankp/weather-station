@@ -9,10 +9,29 @@
       content="Weather and tidal information for the town of Swampscott"
     />
     <meta name="author" content="RomanKP" />
-    <link href="./index.less" rel="stylesheet" />
+    <link href="./style.less" rel="stylesheet" />
   </head>
   <body>
-    <div id="root"></div>
-    <script src="./index.js" type="module"></script>
+    <app-root date="December 22 2022"></app-root>
+    <div id="root">
+      <p class="currentDateString"></p>
+      <ol>
+        <!-- {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+            ({ type, t }) => {
+              const isNext = checkNext(type, t, nextEvent);
+              return (
+                <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+                  {hilo[type]} {localizeTime(t)}
+                </li>
+              );
+            }
+          )} -->
+      </ol>
+      <p>{temperature}&deg;F</p>
+      <p>{windSpeed}, {windDirection}</p>
+      <p>{shortForecast}</p>
+      <p>{detailedForecast}</p>
+    </div>
+    <script src="./main.js" type="module"></script>
   </body>
 </html>
