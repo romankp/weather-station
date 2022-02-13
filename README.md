@@ -16,5 +16,6 @@ Parcel caches these values, so changing them while it's running will not immedia
 
 ## TODO
 
-- Integrate weather.
-- Expand visuals, style, and animations/transitions.
+- Decide on a component solution
+- Integrate weather and tidal API
+- Expand visuals, style, and animations/transitions
