@@ -8,6 +8,7 @@ import {
   constructQueryDate,
   localizeTime,
 } from './utils/dateUtils.js';
+import { AppRoot } from './components/AppRoot.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const baseUrl = process.env.BASE_URL;
@@ -80,27 +81,7 @@ const checkNext = (thisType, thisTime, nextEvent) => {
   return false;
 };
 
-console.log(getCurrentDateString(currentTime));
-
-const template = document.createElement('template');
-template.innerHTML = `
-  <h1>Weather Station</h1>
-  <h2></h2>
-`;
-
-class AppRoot extends HTMLElement {
-  constructor() {
-    super();
-
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.querySelector('h2').innerText =
-      getCurrentDateString(currentTime);
-
-    // this.innerHTML = `<h3>August 21 2022</h3>`;
-  }
-}
-
+// Define app root
 window.customElements.define('app-root', AppRoot);
 
 // class Root extends Component {
