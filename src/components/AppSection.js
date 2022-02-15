@@ -11,18 +11,17 @@ template.innerHTML = `
       border: none;
     }
   </style>
-  <h1>Weather Station</h1>
-  <h2></h2>
+  <h3>Current Weather</h3>
   
 `;
 
-export class AppRoot extends HTMLElement {
+export class AppSection extends HTMLElement {
   constructor() {
     super();
-
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.querySelector('h2').innerText =
-      getCurrentDateString(currentTime);
+
+    // this.shadowRoot.querySelector('h2').innerText =
+    //   getCurrentDateString(currentTime);
   }
 }

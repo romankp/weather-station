@@ -8,7 +8,7 @@ import {
   constructQueryDate,
   localizeTime,
 } from './utils/dateUtils.js';
-import { AppRoot } from './components/AppRoot.js';
+import { AppSection } from './components/AppSection.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const baseUrl = process.env.BASE_URL;
@@ -86,8 +86,8 @@ const subheading = document.getElementsByTagName('h2')[0];
 
 subheading.innerText = getCurrentDateString(currentTime);
 
-// Define app root
-// window.customElements.define('app-root', AppRoot);
+// Define custom elements
+window.customElements.define('app-section', AppSection);
 
 // class Root extends Component {
 //   constructor(props) {

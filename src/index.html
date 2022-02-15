@@ -14,11 +14,14 @@
   <body>
     <h1>Weather Station</h1>
     <h2></h2>
-    <!-- <app-root date="December 22 2022"></app-root> -->
-    <div id="root">
+    <app-section type="current"></app-section>
+    <app-section type="tides"></app-section>
+    <app-section type="wind"></app-section>
+
+    <!-- <div id="root">
       <p class="currentDateString"></p>
-      <ol>
-        <!-- {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+      <ol> -->
+    <!-- {truncatePredictions(currentTime, predictionsToday, nextTime).map(
             ({ type, t }) => {
               const isNext = checkNext(type, t, nextEvent);
               return (
@@ -28,12 +31,12 @@
               );
             }
           )} -->
-      </ol>
+    <!-- </ol>
       <p>{temperature}&deg;F</p>
       <p>{windSpeed}, {windDirection}</p>
       <p>{shortForecast}</p>
       <p>{detailedForecast}</p>
-    </div>
+    </div> -->
     <script src="./main.js" type="module"></script>
   </body>
 </html>
