@@ -13,6 +13,7 @@ template.innerHTML = `
   </style>
   <h1>Weather Station</h1>
   <h2></h2>
+  
 `;
 
 export class AppRoot extends HTMLElement {

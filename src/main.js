@@ -81,8 +81,13 @@ const checkNext = (thisType, thisTime, nextEvent) => {
   return false;
 };
 
+// Saturate app content
+const subheading = document.getElementsByTagName('h2')[0];
+
+subheading.innerText = getCurrentDateString(currentTime);
+
 // Define app root
-window.customElements.define('app-root', AppRoot);
+// window.customElements.define('app-root', AppRoot);
 
 // class Root extends Component {
 //   constructor(props) {
