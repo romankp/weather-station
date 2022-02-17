@@ -1,6 +1,6 @@
 import {
-  buildFullURL,
-  buildFullForecastURL,
+  buildTideURL,
+  buildForecastURL,
   fetchData,
 } from './utils/apiAccess.js';
 import {
@@ -20,8 +20,8 @@ const tidalCutoff = new Date().setHours(18, 47, 30);
 const isAfterCutoff = currentTime >= tidalCutoff;
 const startDate = constructQueryDate(currentTime, false);
 const endDate = constructQueryDate(currentTime, isAfterCutoff);
-const urlFull = buildFullURL(baseUrl, stationId, startDate, endDate);
-const forecastURL = buildFullForecastURL(gridString);
+const tideURL = buildTideURL(baseUrl, stationId, startDate, endDate);
+const forecastURL = buildForecastURL(gridString);
 
 // If it's after the tidal cutoff time,
 // return an array of prediction items for todays date
@@ -106,7 +106,7 @@ window.customElements.define('app-section', AppSection);
 //   }
 
 //   componentDidMount() {
-//     fetchData(urlFull, 'tide').then(({ predictions }) => {
+//     fetchData(tideURL, 'tide').then(({ predictions }) => {
 //       console.log('Tide data received.');
 //       this.setState({
 //         predictionsToday: predictions,
@@ -126,7 +126,7 @@ window.customElements.define('app-section', AppSection);
 
 //   handleDateChange(pickedDate) {
 //     const queryDate = constructQueryDate(pickedDate, false);
-//     const updatedURL = buildFullURL(baseUrl, stationId, queryDate, queryDate);
+//     const updatedURL = buildTideURL(baseUrl, stationId, queryDate, queryDate);
 //     console.log('Date updated.');
 //     fetchData(updatedURL, 'tide').then(({ predictions }) => {
 //       console.log(`Updated date's tide data received.`);
