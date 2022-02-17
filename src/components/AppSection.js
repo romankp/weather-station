@@ -1,6 +1,8 @@
-import { getCurrentDateString } from '../utils/dateUtils.js';
-
-const currentTime = new Date();
+const subHeadings = {
+  current: 'Current Weather',
+  tides: 'Tides',
+  wind: 'Wind',
+};
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -11,8 +13,7 @@ template.innerHTML = `
       border: none;
     }
   </style>
-  <h3>Current Weather</h3>
-  
+  <h3></h3>
 `;
 
 export class AppSection extends HTMLElement {
@@ -21,7 +22,7 @@ export class AppSection extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    // this.shadowRoot.querySelector('h2').innerText =
-    //   getCurrentDateString(currentTime);
+    this.shadowRoot.querySelector('h3').innerText =
+      subHeadings[this.getAttribute('type')];
   }
 }
