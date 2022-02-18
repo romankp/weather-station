@@ -11,8 +11,6 @@ import {
 import { AppSection } from './components/AppSection.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
-const baseUrl = process.env.BASE_URL;
-const stationId = process.env.STATION_ID;
 const gridString = process.env.FORECAST_GRID;
 
 const currentTime = new Date();
@@ -20,7 +18,7 @@ const tidalCutoff = new Date().setHours(18, 47, 30);
 const isAfterCutoff = currentTime >= tidalCutoff;
 const startDate = constructQueryDate(currentTime, false);
 const endDate = constructQueryDate(currentTime, isAfterCutoff);
-const tideURL = buildTideURL(baseUrl, stationId, startDate, endDate);
+const tideURL = buildTideURL(baseTideUrl, stationId, startDate, endDate);
 const forecastURL = buildForecastURL(gridString);
 
 // If it's after the tidal cutoff time,
@@ -126,7 +124,7 @@ window.customElements.define('app-section', AppSection);
 
 //   handleDateChange(pickedDate) {
 //     const queryDate = constructQueryDate(pickedDate, false);
-//     const updatedURL = buildTideURL(baseUrl, stationId, queryDate, queryDate);
+//     const updatedURL = buildTideURL(baseTideUrl, stationId, queryDate, queryDate);
 //     console.log('Date updated.');
 //     fetchData(updatedURL, 'tide').then(({ predictions }) => {
 //       console.log(`Updated date's tide data received.`);
