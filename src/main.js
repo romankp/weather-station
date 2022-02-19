@@ -9,10 +9,13 @@ import {
   localizeTime,
 } from './utils/dateUtils.js';
 import { AppSection } from './components/AppSection.js';
+import { initTides, currentTides, nextTidalEvent } from './tides.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const gridString = process.env.FORECAST_GRID;
+
 const forecastURL = buildForecastURL(gridString);
+const currentTime = new Date();
 
 // Saturate app content
 const subheading = document.getElementsByTagName('h2')[0];
@@ -21,6 +24,9 @@ subheading.innerText = getCurrentDateString(currentTime);
 
 // Define custom elements
 window.customElements.define('app-section', AppSection);
+
+// Fetch weather station data
+initTides();
 
 // class Root extends Component {
 //   constructor(props) {
@@ -39,14 +45,6 @@ window.customElements.define('app-section', AppSection);
 //   }
 
 //   componentDidMount() {
-//     fetchData(tideURL, 'tide').then(({ predictions }) => {
-//       console.log('Tide data received.');
-//       this.setState({
-//         predictionsToday: predictions,
-//         nextEvent: returnNextEvent(predictions),
-//       });
-//       console.log('Tide state updated.');
-//     });
 //     fetchData(forecastURL, 'weather forcast').then(({ properties }) => {
 //       console.log('Weather data received.');
 //       this.setState({

@@ -16,6 +16,10 @@ const startDate = constructQueryDate(currentTime, false);
 const endDate = constructQueryDate(currentTime, isAfterCutoff);
 const tideURL = buildTideURL(baseTideUrl, stationId, startDate, endDate);
 
+// Tidal event state
+let currentTides;
+let nextTidalEvent;
+
 // If it's after the tidal cutoff time,
 // return an array of prediction items for todays date
 // AND the first item for tomorrow's date.
@@ -73,3 +77,16 @@ const checkNext = (thisType, thisTime, nextEvent) => {
   }
   return false;
 };
+
+const initTides = () => {
+  fetchData(tideURL, 'tide').then(({ predictions }) => {
+    console.log('Tide data received.');
+    currentTides = predictions;
+    nextTidalEvent = returnNextEvent(predictions);
+    console.log(currentTides);
+    console.log(nextTidalEvent);
+    console.log('Tide state updated.');
+  });
+};
+
+export { initTides, currentTides, nextTidalEvent };
