@@ -10,6 +10,7 @@
     />
     <meta name="author" content="RomanKP" />
     <link href="./style.less" rel="stylesheet" />
+    <script src="./main.js" type="module"></script>
   </head>
   <body>
     <div id="root">
@@ -19,24 +20,5 @@
       <app-section type="tides"></app-section>
       <app-section type="wind"></app-section>
     </div>
-    <!-- <div id="root">
-      <ol> -->
-    <!-- {truncatePredictions(currentTime, predictionsToday, nextTime).map(
-            ({ type, t }) => {
-              const isNext = checkNext(type, t, nextEvent);
-              return (
-                <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
-                  {hilo[type]} {localizeTime(t)}
-                </li>
-              );
-            }
-          )} -->
-    <!-- </ol>
-      <p>{temperature}&deg;F</p>
-      <p>{windSpeed}, {windDirection}</p>
-      <p>{shortForecast}</p>
-      <p>{detailedForecast}</p>
-    </div> -->
-    <script src="./main.js" type="module"></script>
   </body>
 </html>
