@@ -8,12 +8,8 @@ const buildForecastURL = gridString => {
 
 const fetchData = async (url, type) => {
   console.log(`Fetching ${type} data.`);
-  try {
-    const response = await fetch(url);
-    return await response.json();
-  } catch (e) {
-    console.error(`Fetch request for ${type} data failed: ${e}`);
-  }
+  const response = await fetch(url);
+  return await response.json();
 };
 
 export { buildTideURL, buildForecastURL, fetchData };

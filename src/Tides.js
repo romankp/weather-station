@@ -79,14 +79,16 @@ const checkNext = (thisType, thisTime, nextEvent) => {
 };
 
 const initTides = () => {
-  fetchData(tideURL, 'tide').then(({ predictions }) => {
-    console.log('Tide data received.');
-    currentTides = predictions;
-    nextTidalEvent = returnNextEvent(predictions);
-    console.log(currentTides);
-    console.log(nextTidalEvent);
-    console.log('Tide state updated.');
-  });
+  fetchData(tideURL, 'tide')
+    .then(({ predictions }) => {
+      console.log('Tide data received.');
+      currentTides = predictions;
+      nextTidalEvent = returnNextEvent(predictions);
+      console.log(currentTides);
+      console.log(nextTidalEvent);
+      console.log('Tide state updated.');
+    })
+    .catch(e => console.error(`Fetch request for ${type} data failed: ${e}`));
 };
 
 export { initTides, currentTides, nextTidalEvent };
