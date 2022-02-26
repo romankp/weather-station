@@ -29,7 +29,6 @@ export class AppSection extends HTMLElement {
 
     if (this.type === 'tides') {
       const childOL = document.createElement('ol');
-
       this.shadowRoot.appendChild(childOL);
     }
   }

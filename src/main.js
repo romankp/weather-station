@@ -1,8 +1,4 @@
-import {
-  buildTideURL,
-  buildForecastURL,
-  fetchData,
-} from './utils/apiAccess.js';
+import { buildForecastURL, fetchData } from './utils/apiAccess.js';
 import {
   getCurrentDateString,
   constructQueryDate,
