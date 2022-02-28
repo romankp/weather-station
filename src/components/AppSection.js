@@ -28,7 +28,16 @@ export class AppSection extends HTMLElement {
     this.shadowRoot.querySelector('h3').innerText = subHeadings[this.type];
 
     if (this.type === 'tides') {
+      const testArray = ['1', '2', '3'];
       const childOL = document.createElement('ol');
+
+      testArray.forEach(item => {
+        const tideItem = document.createElement('li');
+        tideItem.innerText = item;
+
+        childOL.appendChild(tideItem);
+      });
+
       this.shadowRoot.appendChild(childOL);
     }
   }
