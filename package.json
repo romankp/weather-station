@@ -23,10 +23,10 @@
   "homepage": "https://github.com/romankp/weather-station#readme",
   "browserslist": "last 2 Chrome version, last 2 Firefox version",
   "devDependencies": {
-    "@babel/core": "7.16",
+    "@babel/core": "7.17",
     "@babel/preset-env": "7.16",
-    "@parcel/transformer-less": "2.2",
+    "@parcel/transformer-less": "2.4",
     "less": "4.1",
-    "parcel": "2.2"
+    "parcel": "2.4"
   }
 }
