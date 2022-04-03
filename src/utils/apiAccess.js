@@ -7,7 +7,7 @@ const buildForecastURL = gridString => {
 };
 
 const fetchData = async (url, type) => {
-  console.log(`Fetching ${type} data.`);
+  console.log(`Fetching ${type} data`);
   const response = await fetch(url);
   return await response.json();
 };

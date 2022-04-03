@@ -14,6 +14,7 @@ template.innerHTML = `
     }
   </style>
   <h3></h3>
+  <slot name="section-content">Loading data</slot>
 `;
 
 export class AppSection extends HTMLElement {

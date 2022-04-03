@@ -78,17 +78,36 @@ const checkNext = (thisType, thisTime, nextEvent) => {
   return false;
 };
 
-const initTides = () => {
-  fetchData(tideURL, 'tide')
-    .then(({ predictions }) => {
-      console.log('Tide data received.');
-      currentTides = predictions;
-      nextTidalEvent = returnNextEvent(predictions);
-      console.log(currentTides);
-      console.log(nextTidalEvent);
-      console.log('Tide state updated.');
-    })
-    .catch(e => console.error(`Fetch request for ${type} data failed: ${e}`));
+const buildContent = (type, t) => {
+  console.log(type);
+  console.log(t);
+};
+
+const initTides = async () => {
+  try {
+    const { predictions } = await fetchData(tideURL, 'tide');
+
+    console.log('Tide data received');
+    currentTides = predictions;
+    nextTidalEvent = returnNextEvent(predictions);
+    console.log(currentTides);
+    console.log(nextTidalEvent);
+    console.log('Tide state updated');
+
+    // truncatePredictions(currentTime, currentTides, nextTime).map(
+    //   ({ type, t }) => {
+    //     buildContent(type, t);
+    //     // const isNext = checkNext(type, t, nextEvent);
+    //     // return (
+    //     //   <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+    //     //     {hilo[type]} {localizeTime(t)}
+    //     //   </li>
+    //     // );
+    //   }
+    // );
+  } catch (e) {
+    console.error(`Fetch request for tide data failed: ${e}`);
+  }
 };
 
 export { initTides, currentTides, nextTidalEvent };
