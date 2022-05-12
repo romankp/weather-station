@@ -1,6 +1,6 @@
 # Weather Station
 
-Weather and tidal information for the good ol' town of Swampscott
+Weather and tidal information for the good ol' town of Swampscott. As of right now this project has become a scratch-pad to tinker with technologies that I'm curious about, such as Svelte and web components.
 
 ## API URL, ID, and Keys
 
