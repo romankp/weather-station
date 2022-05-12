@@ -1,4 +1,9 @@
-import { initTides, currentTides, nextTidalEvent } from '../tides.js';
+import {
+  initTides,
+  checkNext,
+  currentTides,
+  nextTidalEvent,
+} from '../tides.js';
 
 const subHeadings = {
   current: 'Current Weather',
@@ -36,7 +41,11 @@ export class AppSection extends HTMLElement {
 
         tidesArray.forEach(({ t, type }) => {
           const tideItem = document.createElement('li');
-          tideItem.innerText = `${t} ${type}`;
+          const isNext = checkNext(type, t, nextTidalEvent);
+
+          console.log(isNext);
+
+          tideItem.innerText = `${t} ${type}${isNext ? ' NEXT EVENT' : ''}`;
 
           childOL.appendChild(tideItem);
         });

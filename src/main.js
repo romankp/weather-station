@@ -5,7 +5,6 @@ import {
   localizeTime,
 } from './utils/dateUtils.js';
 import { AppSection } from './components/AppSection.js';
-import { initTides, currentTides, nextTidalEvent } from './tides.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const gridString = process.env.FORECAST_GRID;
@@ -20,9 +19,6 @@ subheading.innerText = getCurrentDateString(currentTime);
 
 // Define custom elements
 window.customElements.define('app-section', AppSection);
-
-// Fetch weather station data
-// initTides();
 
 // class Root extends Component {
 //   constructor(props) {
