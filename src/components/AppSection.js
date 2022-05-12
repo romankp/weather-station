@@ -1,3 +1,5 @@
+import { initTides, currentTides, nextTidalEvent } from '../tides.js';
+
 const subHeadings = {
   current: 'Current Weather',
   tides: 'Tides',
@@ -14,7 +16,7 @@ template.innerHTML = `
     }
   </style>
   <h3></h3>
-  <slot name="section-content">Loading data</slot>
+  <slot name="section-content"></slot>
 `;
 
 export class AppSection extends HTMLElement {
@@ -29,17 +31,18 @@ export class AppSection extends HTMLElement {
     this.shadowRoot.querySelector('h3').innerText = subHeadings[this.type];
 
     if (this.type === 'tides') {
-      const testArray = ['1', '2', '3'];
-      const childOL = document.createElement('ol');
+      initTides().then(tidesArray => {
+        const childOL = document.createElement('ol');
 
-      testArray.forEach(item => {
-        const tideItem = document.createElement('li');
-        tideItem.innerText = item;
+        tidesArray.forEach(({ t, type }) => {
+          const tideItem = document.createElement('li');
+          tideItem.innerText = `${t} ${type}`;
 
-        childOL.appendChild(tideItem);
+          childOL.appendChild(tideItem);
+        });
+
+        this.shadowRoot.appendChild(childOL);
       });
-
-      this.shadowRoot.appendChild(childOL);
     }
   }
 }

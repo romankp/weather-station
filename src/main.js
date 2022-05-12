@@ -22,7 +22,7 @@ subheading.innerText = getCurrentDateString(currentTime);
 window.customElements.define('app-section', AppSection);
 
 // Fetch weather station data
-initTides();
+// initTides();
 
 // class Root extends Component {
 //   constructor(props) {

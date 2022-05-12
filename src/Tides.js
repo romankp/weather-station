@@ -18,6 +18,7 @@ const tideURL = buildTideURL(baseTideUrl, stationId, startDate, endDate);
 
 // Tidal event state
 let currentTides;
+let truncatedTides;
 let nextTidalEvent;
 
 // If it's after the tidal cutoff time,
@@ -90,9 +91,17 @@ const initTides = async () => {
     console.log('Tide data received');
     currentTides = predictions;
     nextTidalEvent = returnNextEvent(predictions);
+    truncatedTides = truncatePredictions(
+      currentTime,
+      currentTides,
+      nextTidalEvent
+    );
     console.log(currentTides);
     console.log(nextTidalEvent);
+    console.log(truncatedTides);
     console.log('Tide state updated');
+
+    return truncatedTides;
 
     // truncatePredictions(currentTime, currentTides, nextTime).map(
     //   ({ type, t }) => {
@@ -107,6 +116,7 @@ const initTides = async () => {
     // );
   } catch (e) {
     console.error(`Fetch request for tide data failed: ${e}`);
+    return [];
   }
 };
 
