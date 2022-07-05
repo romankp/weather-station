@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "consolidated weather & tidal information for Swampscott",
   "scripts": {
-    "start": "parcel --no-cache src/index.html",
-    "build": "parcel build src/index.html"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
@@ -13,7 +15,7 @@
   "keywords": [
     "weather",
     "tide",
-    "parcel"
+    "next"
   ],
   "author": "RomanKP",
   "license": "ISC",
@@ -27,6 +29,9 @@
     "@babel/preset-env": "7.16",
     "@parcel/transformer-less": "2.4",
     "less": "4.1",
-    "parcel": "2.4"
+    "next": "^12.2.0",
+    "parcel": "2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
