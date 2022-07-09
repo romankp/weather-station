@@ -5,7 +5,7 @@ import {
   constructQueryDate,
   localizeTime,
 } from '../src/utils/dateUtils.js';
-// import { AppSection } from '../src/components/AppSection.js';
+import { AppSection } from '../src/components';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
 const gridString = process.env.NEXT_PUBLIC_FORECAST_GRID;
@@ -20,18 +20,6 @@ function Root() {
   );
 
   return (
-    // <>
-    //   <h1>Weather Station</h1>
-    //   <h2>{getCurrentDateString(currentTime)}</h2>
-    //   <app-section type="current">
-    //     <h4 slot="section-content">
-    //       HEADER TEST <span>Wow! So span!</span>
-    //     </h4>
-    //   </app-section>
-    //   <app-section type="tides"></app-section>
-    //   <app-section type="wind"></app-section>
-    // </>
-
     <div className={`wrapper${loaded ? ' show' : ''}`}>
       <h1>Weather Station</h1>
       <p>{currentDateString}</p>
@@ -46,13 +34,15 @@ function Root() {
             );
           }
         )}
-      </ol>
-      <p>{temperature}&deg;F</p>
+      </ol> */}
+      {/* <p>{temperature}&deg;F</p>
       <p>
         {windSpeed}, {windDirection}
       </p>
       <p>{shortForecast}</p>
       <p>{detailedForecast}</p> */}
+
+      <AppSection heading="TEST" />
     </div>
   );
 }
