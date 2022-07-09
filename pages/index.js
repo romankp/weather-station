@@ -7,12 +7,12 @@ import {
 // import { AppSection } from '../src/components/AppSection.js';
 
 // We don't destructure here because of a limitation in how Parcel interacts with .env variables
-// const gridString = process.env.FORECAST_GRID;
+const gridString = process.env.NEXT_PUBLIC_FORECAST_GRID;
 
-// const forecastURL = buildForecastURL(gridString);
+const forecastURL = buildForecastURL(gridString);
 const currentTime = new Date();
 
-function App() {
+function Root() {
   return (
     <>
       <h1>Weather Station</h1>
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;
