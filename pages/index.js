@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { buildForecastURL, fetchData } from '../src/utils/apiAccess.js';
 import {
   getCurrentDateString,
@@ -13,18 +14,46 @@ const forecastURL = buildForecastURL(gridString);
 const currentTime = new Date();
 
 function Root() {
+  const [loaded, setLoaded] = useState(false);
+  const [currentDateString, setCurrentDateString] = useState(
+    getCurrentDateString(currentTime)
+  );
+
   return (
-    <>
+    // <>
+    //   <h1>Weather Station</h1>
+    //   <h2>{getCurrentDateString(currentTime)}</h2>
+    //   <app-section type="current">
+    //     <h4 slot="section-content">
+    //       HEADER TEST <span>Wow! So span!</span>
+    //     </h4>
+    //   </app-section>
+    //   <app-section type="tides"></app-section>
+    //   <app-section type="wind"></app-section>
+    // </>
+
+    <div className={`wrapper${loaded ? ' show' : ''}`}>
       <h1>Weather Station</h1>
-      <h2>{getCurrentDateString(currentTime)}</h2>
-      <app-section type="current">
-        <h4 slot="section-content">
-          HEADER TEST <span>Wow! So span!</span>
-        </h4>
-      </app-section>
-      <app-section type="tides"></app-section>
-      <app-section type="wind"></app-section>
-    </>
+      <p>{currentDateString}</p>
+      {/* <ol>
+        {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+          ({ type, t }) => {
+            const isNext = checkNext(type, t, nextEvent);
+            return (
+              <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+                {hilo[type]} {localizeTime(t)}
+              </li>
+            );
+          }
+        )}
+      </ol>
+      <p>{temperature}&deg;F</p>
+      <p>
+        {windSpeed}, {windDirection}
+      </p>
+      <p>{shortForecast}</p>
+      <p>{detailedForecast}</p> */}
+    </div>
   );
 }
 
