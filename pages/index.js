@@ -13,6 +13,8 @@ const gridString = process.env.NEXT_PUBLIC_FORECAST_GRID;
 const forecastURL = buildForecastURL(gridString);
 const currentTime = new Date();
 
+const sections = ['current', 'tides', 'wind'];
+
 function Root() {
   const [loaded, setLoaded] = useState(false);
   const [currentDateString, setCurrentDateString] = useState(
@@ -42,7 +44,9 @@ function Root() {
       <p>{shortForecast}</p>
       <p>{detailedForecast}</p> */}
 
-      <AppSection heading="TEST" />
+      {sections.map(string => {
+        return <AppSection key={string} section={string} />;
+      })}
     </div>
   );
 }

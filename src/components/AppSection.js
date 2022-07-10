@@ -11,10 +11,10 @@ const subHeadings = {
   wind: 'Wind',
 };
 
-export const AppSection = ({ heading }) => {
+export const AppSection = ({ section }) => {
   return (
     <section>
-      <h2>{heading}</h2>
+      <h2>{subHeadings[section]}</h2>
     </section>
   );
 };
