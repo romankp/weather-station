@@ -90,9 +90,9 @@ const buildContent = (type, t) => {
   console.log(t);
 };
 
-const initTides = async () => {
+const initTides = async (url, updateState) => {
   try {
-    const { predictions } = await fetchData(tideURL, 'tide');
+    const { predictions } = await fetchData(url, 'tide');
 
     console.log('Tide data received');
     currentTides = predictions;
@@ -107,19 +107,7 @@ const initTides = async () => {
     console.log(truncatedTides);
     console.log('Tide state updated');
 
-    return truncatedTides;
-
-    // truncatePredictions(currentTime, currentTides, nextTime).map(
-    //   ({ type, t }) => {
-    //     buildContent(type, t);
-    //     // const isNext = checkNext(type, t, nextEvent);
-    //     // return (
-    //     //   <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
-    //     //     {hilo[type]} {localizeTime(t)}
-    //     //   </li>
-    //     // );
-    //   }
-    // );
+    updateState(truncatedTides);
   } catch (e) {
     console.error(`Fetch request for tide data failed: ${e}`);
     return [];
