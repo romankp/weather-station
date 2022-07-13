@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const subHeadings = {
   current: 'Current Weather',
   tides: 'Tides',
@@ -10,4 +12,8 @@ export const AppSection = ({ section }) => {
       <h2>{subHeadings[section]}</h2>
     </section>
   );
+};
+
+AppSection.propTypes = {
+  section: PropTypes.string,
 };

@@ -13,13 +13,15 @@ const gridString = process.env.NEXT_PUBLIC_FORECAST_GRID;
 const forecastURL = buildForecastURL(gridString);
 const currentTime = new Date();
 
-const sections = ['current', 'tides', 'wind'];
+const sections = ['current', 'wind'];
 
 function Root() {
   const [loaded, setLoaded] = useState(false);
   const [currentDateString, setCurrentDateString] = useState(
     getCurrentDateString(currentTime)
   );
+  const [predictionsToday] = useState([]);
+  const [nextEvent] = useState({});
 
   return (
     <div className={`wrapper${loaded ? ' show' : ''}`}>
@@ -47,6 +49,21 @@ function Root() {
       {sections.map(string => {
         return <AppSection key={string} section={string} />;
       })}
+      <section>
+        <h2>{Tides}</h2>
+        {/* <ol>
+        {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+          ({ type, t }) => {
+            const isNext = checkNext(type, t, nextEvent);
+            return (
+              <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+                {hilo[type]} {localizeTime(t)}
+              </li>
+            );
+          }
+        )}
+      </ol> */}
+      </section>
     </div>
   );
 }
