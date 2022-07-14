@@ -11,5 +11,5 @@ export const AppSection = ({ heading, children }) => {
 
 AppSection.propTypes = {
   heading: PropTypes.string,
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };

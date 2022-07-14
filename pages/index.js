@@ -49,9 +49,11 @@ function Root() {
       <p>{shortForecast}</p>
       <p>{detailedForecast}</p> */}
 
-      {/* {sections.map(string => {
-        return <AppSection key={string} section={string} />;
-      })} */}
+      <AppSection
+        key={'Current Weather'}
+        heading={'Current Weather'}
+      ></AppSection>
+      <AppSection key={'Wind'} heading={'Wind'}></AppSection>
       <AppSection key={'Tides'} heading={'Tides'}>
         {JSON.stringify(tidesToday)}
         {/* <ol>
