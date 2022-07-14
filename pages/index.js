@@ -18,7 +18,6 @@ const tideBaseUrl = process.env.NEXT_PUBLIC_BASE_TIDE_URL;
 const tideStationId = process.env.NEXT_PUBLIC_STATION_ID;
 
 const currentTime = new Date();
-const sections = ['current', 'wind'];
 
 // Tides
 const tidalCutoff = new Date().setHours(18, 47, 30);
@@ -32,9 +31,7 @@ const forecastURL = buildForecastURL(weatherGrid);
 
 function Root() {
   const [loaded, setLoaded] = useState(false);
-  const [currentDateString, setCurrentDateString] = useState(
-    getCurrentDateString(currentTime)
-  );
+  const [currentDateString] = useState(getCurrentDateString(currentTime));
   const [tidesToday, setTidesToday] = useState([]);
 
   useEffect(() => {
@@ -52,25 +49,24 @@ function Root() {
       <p>{shortForecast}</p>
       <p>{detailedForecast}</p> */}
 
-      {sections.map(string => {
+      {/* {sections.map(string => {
         return <AppSection key={string} section={string} />;
-      })}
-      <section>
-        <h2>Tides</h2>
+      })} */}
+      <AppSection key={'Tides'} heading={'Tides'}>
         {JSON.stringify(tidesToday)}
         {/* <ol>
-        {truncatePredictions(currentTime, predictionsToday, nextTime).map(
-          ({ type, t }) => {
-            const isNext = checkNext(type, t, nextEvent);
-            return (
-              <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
-                {hilo[type]} {localizeTime(t)}
-              </li>
-            );
-          }
-        )}
-      </ol> */}
-      </section>
+          {truncatePredictions(currentTime, predictionsToday, nextTime).map(
+            ({ type, t }) => {
+              const isNext = checkNext(type, t, nextEvent);
+              return (
+                <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+                  {hilo[type]} {localizeTime(t)}
+                </li>
+              );
+            }
+          )}
+        </ol> */}
+      </AppSection>
     </div>
   );
 }

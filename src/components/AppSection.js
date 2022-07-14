@@ -1,19 +1,15 @@
 import PropTypes from 'prop-types';
 
-const subHeadings = {
-  current: 'Current Weather',
-  tides: 'Tides',
-  wind: 'Wind',
-};
-
-export const AppSection = ({ section }) => {
+export const AppSection = ({ heading, children }) => {
   return (
     <section>
-      <h2>{subHeadings[section]}</h2>
+      <h2>{heading}</h2>
+      {children}
     </section>
   );
 };
 
 AppSection.propTypes = {
-  section: PropTypes.string,
+  heading: PropTypes.string,
+  children: PropTypes.object,
 };
