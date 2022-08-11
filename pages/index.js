@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react';
-import {
-  buildForecastURL,
-  buildTideURL,
-  fetchData,
-} from '../src/utils/apiAccess.js';
+import { buildForecastURL, fetchData } from '../src/utils/apiAccess.js';
 import {
   getCurrentDateString,
   constructQueryDate,
   localizeTime,
 } from '../src/utils/dateUtils.js';
 import { AppSection, Tides } from '../src/components';
-import { initTides, hilo } from '../src/tides.js';
 
 const weatherGrid = process.env.NEXT_PUBLIC_FORECAST_GRID;
 
@@ -22,11 +17,6 @@ const forecastURL = buildForecastURL(weatherGrid);
 function Root() {
   const [loaded, setLoaded] = useState(false);
   const [currentDateString] = useState(getCurrentDateString(currentTime));
-  // const [tidesToday, setTidesToday] = useState([]);
-
-  // useEffect(() => {
-  //   initTides(tideURL, setTidesToday);
-  // }, []);
 
   return (
     <div className={`wrapper${loaded ? ' show' : ''}`}>
@@ -44,7 +34,7 @@ function Root() {
         heading={'Current Weather'}
       ></AppSection>
       <AppSection key={'Wind'} heading={'Wind'}></AppSection>
-      <Tides currentTime={currentTime}></Tides>
+      <Tides></Tides>
     </div>
   );
 }
