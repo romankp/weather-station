@@ -97,4 +97,4 @@ const initTides = async (url, updateState) => {
   }
 };
 
-export { initTides, checkNext, currentTides, nextTidalEvent };
+export { initTides, checkNext, hilo };
