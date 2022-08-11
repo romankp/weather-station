@@ -67,19 +67,13 @@ const nextIsTomorrow = (tomorrowTime, nextTime) => {
 const initTides = async (url, setTides) => {
   try {
     const { predictions } = await fetchData(url, 'tide');
-
-    console.log('Tide data received');
     const nextTidalEvent = returnNextEvent(predictions);
     const adjustedTides = truncatePredictions(
       currentTime,
       predictions,
       nextTidalEvent.t
     );
-
-    console.log(nextTidalEvent);
-
     setTides(adjustedTides);
-    console.log('Tide state updated');
   } catch (e) {
     console.error(`Fetch request for tide data failed: ${e}`);
     return [];
