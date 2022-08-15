@@ -17,18 +17,6 @@ const hilo = {
   L: 'low',
 };
 
-const returnNextEvent = predictions => {
-  return (
-    predictions.find(({ t }) => {
-      const predictionDate = new Date(t);
-      if (currentTime < predictionDate) {
-        return true;
-      }
-      return false;
-    }) || {}
-  );
-};
-
 // If it's after the tidal cutoff time,
 // return an array of prediction items for todays date
 // AND the first item for tomorrow's date.
@@ -63,7 +51,7 @@ const nextIsTomorrow = (tomorrowTime, nextTime) => {
   return tomorrowDay === nextEventDay;
 };
 
-const initTides = async (url, setTides) => {
+const initTides = async (url, setNext, setTides) => {
   try {
     const { predictions } = await fetchData(url, 'tide');
     const nextTidalEvent = returnNextEvent(predictions);
@@ -72,6 +60,7 @@ const initTides = async (url, setTides) => {
       predictions,
       nextTidalEvent.t
     );
+    setNext(nextTidalEvent);
     setTides(adjustedTides);
   } catch (e) {
     console.error(`Fetch request for tide data failed: ${e}`);
@@ -79,33 +68,46 @@ const initTides = async (url, setTides) => {
   }
 };
 
+const returnNextEvent = predictions => {
+  return (
+    predictions.find(({ t }) => {
+      const predictionDate = new Date(t);
+      if (currentTime < predictionDate) {
+        return true;
+      }
+      return false;
+    }) || {}
+  );
+};
+
+const checkNext = (thisType, thisTime, nextEvent) => {
+  if (thisType === nextEvent.type && thisTime === nextEvent.t) {
+    return true;
+  }
+  return false;
+};
+
 export const Tides = () => {
+  const [nextEvent, setNextEvent] = useState({});
   const [tidesToday, setTidesToday] = useState([]);
-  // TODO  nextEvent
 
   useEffect(() => {
-    initTides(tideURL, setTidesToday);
+    initTides(tideURL, setNextEvent, setTidesToday);
   }, []);
 
   return (
     <section>
       <h2>Tides</h2>
-      {
-        <ol>
-          {tidesToday.map(({ type, t }) => {
-            // const isNext = checkNext(type, t, nextEvent);
-            return (
-              // <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
-              //   {hilo[type]} {localizeTime(t)}
-              // </li>
-
-              <li key={`${type}${t}`}>
-                {hilo[type]} {localizeTime(t)}
-              </li>
-            );
-          })}
-        </ol>
-      }
+      <ol>
+        {tidesToday.map(({ type, t }) => {
+          const isNext = checkNext(type, t, nextEvent);
+          return (
+            <li key={`${type}${t}`} className={isNext ? 'isNext' : ''}>
+              {hilo[type]} {localizeTime(t)}
+            </li>
+          );
+        })}
+      </ol>
     </section>
   );
 };
