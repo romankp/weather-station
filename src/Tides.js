@@ -26,9 +26,6 @@ const truncatePredictions = (current, predictions, nextTime) => {
       return currentDay !== itemDay;
     });
     // If next event is tommorrow, attach tomorrow's first tidal event to predictions
-    console.log('******');
-    console.log(nextTime);
-    console.log(nextIsTomorrow(tomorrowItem.t, nextTime));
     if (nextIsTomorrow(tomorrowItem.t, nextTime)) {
       truncatedArray.push(tomorrowItem);
     }
@@ -64,9 +61,6 @@ const hilo = {
 };
 
 const checkNext = (thisType, thisTime, nextEvent) => {
-  console.log(thisType);
-  console.log(thisTime);
-  console.log(nextEvent);
   if (thisType === nextEvent.type && thisTime === nextEvent.t) {
     return true;
   }
@@ -85,12 +79,8 @@ const initTides = async (url, updateState) => {
       currentTides,
       nextTidalEvent.t
     );
-    console.log(currentTides);
-    console.log(nextTidalEvent);
-    console.log(truncatedTides);
-    console.log('Tide state updated');
-
     updateState(truncatedTides);
+    console.log('Tide state updated');
   } catch (e) {
     console.error(`Fetch request for tide data failed: ${e}`);
     return [];

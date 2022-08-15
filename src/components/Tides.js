@@ -46,7 +46,6 @@ const truncatePredictions = (current, predictions, nextTime) => {
       return currentDay !== itemDay;
     });
     // If next event is tommorrow, attach tomorrow's first tidal event to predictions
-    console.log(nextIsTomorrow(tomorrowItem.t, nextTime));
     if (nextIsTomorrow(tomorrowItem.t, nextTime)) {
       truncatedArray.push(tomorrowItem);
     }
