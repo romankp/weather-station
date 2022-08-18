@@ -56,7 +56,6 @@ const initTides = async (
   setNext,
   setTides
 ) => {
-  console.log(currentTime);
   try {
     const { predictions } = await fetchData(url, 'tide');
     const nextTidalEvent = returnNextEvent(predictions);
