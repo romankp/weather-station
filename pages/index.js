@@ -9,7 +9,7 @@ import { AppSection, Tides } from '../src/components';
 
 const weatherGrid = process.env.NEXT_PUBLIC_FORECAST_GRID;
 
-const currentTime = new Date();
+let currentTime = new Date();
 
 // Weather
 const forecastURL = buildForecastURL(weatherGrid);
@@ -34,7 +34,7 @@ function Root() {
         heading={'Current Weather'}
       ></AppSection>
       <AppSection key={'Wind'} heading={'Wind'}></AppSection>
-      <Tides></Tides>
+      <Tides currentTime={currentTime}></Tides>
     </div>
   );
 }

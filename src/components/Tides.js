@@ -5,13 +5,6 @@ import { buildTideURL, fetchData } from '../utils/apiAccess.js';
 const tideBaseUrl = process.env.NEXT_PUBLIC_BASE_TIDE_URL;
 const tideStationId = process.env.NEXT_PUBLIC_STATION_ID;
 
-const currentTime = new Date();
-const tidalCutoff = new Date().setHours(18, 47, 30);
-const isAfterCutoff = currentTime >= tidalCutoff;
-const startDate = constructQueryDate(currentTime, false);
-const endDate = constructQueryDate(currentTime, isAfterCutoff);
-const tideURL = buildTideURL(tideBaseUrl, tideStationId, startDate, endDate);
-
 const hilo = {
   H: 'high',
   L: 'low',
@@ -20,9 +13,14 @@ const hilo = {
 // If it's after the tidal cutoff time,
 // return an array of prediction items for todays date
 // AND the first item for tomorrow's date.
-const truncatePredictions = (current, predictions, nextTime) => {
+const truncatePredictions = (
+  isAfterCutoff,
+  currentTime,
+  predictions,
+  nextTime
+) => {
   if (isAfterCutoff && predictions.length) {
-    const currentDay = current.getDate();
+    const currentDay = currentTime.getDate();
     // Truncate predictions to today's date
     const truncatedArray = predictions.filter(({ t }) => {
       const itemDay = new Date(t).getDate();
@@ -51,11 +49,19 @@ const nextIsTomorrow = (tomorrowTime, nextTime) => {
   return tomorrowDay === nextEventDay;
 };
 
-const initTides = async (url, setNext, setTides) => {
+const initTides = async (
+  url,
+  isAfterCutoff,
+  currentTime,
+  setNext,
+  setTides
+) => {
+  console.log(currentTime);
   try {
     const { predictions } = await fetchData(url, 'tide');
     const nextTidalEvent = returnNextEvent(predictions);
     const adjustedTides = truncatePredictions(
+      isAfterCutoff,
       currentTime,
       predictions,
       nextTidalEvent.t
@@ -68,7 +74,7 @@ const initTides = async (url, setNext, setTides) => {
   }
 };
 
-const returnNextEvent = predictions => {
+const returnNextEvent = (predictions, currentTime) => {
   return (
     predictions.find(({ t }) => {
       const predictionDate = new Date(t);
@@ -87,12 +93,18 @@ const checkNext = (thisType, thisTime, nextEvent) => {
   return false;
 };
 
-export const Tides = () => {
+export const Tides = ({ currentTime }) => {
+  const tidalCutoff = new Date().setHours(18, 47, 30);
+  const isAfterCutoff = currentTime >= tidalCutoff;
+  const startDate = constructQueryDate(currentTime, false);
+  const endDate = constructQueryDate(currentTime, isAfterCutoff);
+  const tideURL = buildTideURL(tideBaseUrl, tideStationId, startDate, endDate);
+
   const [nextEvent, setNextEvent] = useState({});
   const [tidesToday, setTidesToday] = useState([]);
 
   useEffect(() => {
-    initTides(tideURL, setNextEvent, setTidesToday);
+    initTides(tideURL, isAfterCutoff, currentTime, setNextEvent, setTidesToday);
   }, []);
 
   return (
