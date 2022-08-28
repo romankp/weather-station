@@ -5,7 +5,7 @@ import {
   constructQueryDate,
   localizeTime,
 } from '../src/utils/dateUtils.js';
-import { AppSection, Tides } from '../src/components';
+import { AppSection, CurrentWeather, Tides } from '../src/components';
 
 const weatherGrid = process.env.NEXT_PUBLIC_FORECAST_GRID;
 
@@ -35,6 +35,7 @@ function Root() {
       ></AppSection>
       <AppSection key={'Wind'} heading={'Wind'}></AppSection>
       <Tides currentTime={currentTime}></Tides>
+      <CurrentWeather></CurrentWeather>
     </div>
   );
 }
